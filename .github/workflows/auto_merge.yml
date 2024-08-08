@@ -1,0 +1,33 @@
+name: Auto Update and Merge
+
+on:
+  push:
+    branches:
+      - master  # Trigger on pushes to the master branch        
+
+jobs:
+  auto-update-and-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all history for merging
+
+      - name: Merge main into target branch
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git checkout master # Replace 'target-branch' with your actual branch name
+          git merge master --no-ff  # Merge with a merge commit
+
+      - name: Push changes
+        run: git push
+
+      - name: Auto-merge pull requests
+        uses: ridedott/merge-me-action@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          MERGE_METHOD: MERGE  # Use 'MERGE' for a merge commit
+          PRESET: NONE 
+          # Other options can be added here if needed, but be cautious
