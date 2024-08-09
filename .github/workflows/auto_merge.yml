@@ -1,33 +1,31 @@
 name: Auto Update and Merge
 
 on:
-  push:
+  schedule:
+    - cron: '*/5 * * * *' # Run every 5 minutes
+  pull_request_target:
+    types: [assigned, unassigned, labeled, unlabeled, opened, edited, reopened, synchronize, ready_for_review, locked, unlocked, review_requested, review_request_removed, auto_merge_enabled, auto_merge_disabled]
     branches:
-      - master  # Trigger on pushes to the master branch        
+      - master  # Replace 'target-branch' with your actual branch name      
+
 
 jobs:
-  auto-update-and-merge:
+  auto-merge:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.7
         with:
           fetch-depth: 0  # Fetch all history for merging
+          ref: ${{ github.event.pull_request.head.ref }} # Checkout the PR's branch
 
-      - name: Merge main into target branch
+      - name: Merge PR into master
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git checkout master # Replace 'target-branch' with your actual branch name
-          git merge master --no-ff  # Merge with a merge commit
+          git checkout master 
+          git pull origin master  # Ensure master is up-to-date
+          git merge ${{ github.event.pull_request.head.ref }} --no-ff # Merge the PR's branch
 
       - name: Push changes
-        run: git push
-
-      - name: Auto-merge pull requests
-        uses: ridedott/merge-me-action@v2
-        with:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          MERGE_METHOD: MERGE  # Use 'MERGE' for a merge commit
-          PRESET: NONE 
-          # Other options can be added here if needed, but be cautious
+        run: git push origin master
