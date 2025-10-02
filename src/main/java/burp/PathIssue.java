@@ -19,7 +19,7 @@ public class PathIssue implements IScanIssue {
     private final IHttpRequestResponse baseRequestResponse;
     private final IExtensionHelpers helpers;
     private final IBurpExtenderCallbacks callbacks;
-    private BurpExtender burpExtender;
+    private final BurpExtender burpExtender;
 
     private final String path;
     private final Set<Vulnerability> vulnerabilities;
@@ -53,7 +53,7 @@ public class PathIssue implements IScanIssue {
 
         for (final Vulnerability v: vulnerabilities) {
             if(!v.getClass().equals(PathVulnerability.class)){
-                burpExtender.printError("[VULNERS] PATH Issue Vulnerability not PathVulnerability but " + v.getClass().toString());
+                burpExtender.printError("[VULNERS] PATH Issue Vulnerability not PathVulnerability but " + v.getClass());
                 throw new RuntimeException("[VULNERS] PATH Issue Vulnerability not PathVulnerability");
             }
             if(((PathVulnerability) v).isOriginal()) {

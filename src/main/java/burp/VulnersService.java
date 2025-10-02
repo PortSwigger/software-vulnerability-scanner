@@ -8,6 +8,7 @@ import burp.models.Vulnerability;
 import burp.models.VulnersRequest;
 import burp.tasks.PathScanTask;
 import burp.tasks.SoftwareScanTask;
+import com.codemagi.burp.BaseExtender;
 import com.codemagi.burp.MatchRule;
 import com.codemagi.burp.ScanIssueConfidence;
 import com.codemagi.burp.ScanIssueSeverity;
@@ -23,7 +24,7 @@ import java.util.regex.PatternSyntaxException;
 
 public class VulnersService {
 
-    private BurpExtender burpExtender;
+    private final BurpExtender burpExtender;
     private final IBurpExtenderCallbacks callbacks;
     private final IExtensionHelpers helpers;
     private final TabComponent tabComponent;
@@ -145,7 +146,7 @@ public class VulnersService {
                 burpExtender.addMatchRule(new MatchRule(pattern, 1, key, ScanIssueSeverity.LOW, ScanIssueConfidence.CERTAIN));
             } catch (PatternSyntaxException pse) {
                 burpExtender.printError("[VULNERS] Unable to compile pattern: " + v.getString("regex") + " for: " + key);
-                burpExtender.printStackTrace(pse);
+                BaseExtender.printStackTrace(pse);
             }
         }
     }

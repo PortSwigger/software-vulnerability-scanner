@@ -18,9 +18,9 @@ public class RulesTableListener implements TableModelListener {
 
     private final JTable table;
 
-    private IBurpExtenderCallbacks mCallbacks;
-    private DefaultTableModel model;
-    private PassiveScan scan;
+    private final IBurpExtenderCallbacks mCallbacks;
+    private final DefaultTableModel model;
+    private final PassiveScan scan;
 
     public RulesTableListener(IBurpExtenderCallbacks callbacks, JTable table, DefaultTableModel model, PassiveScan scan) {
         this.mCallbacks = callbacks;
@@ -47,7 +47,7 @@ public class RulesTableListener implements TableModelListener {
 
         switch (column) {
             case 0:
-                mCallbacks.printOutput("[VULNERS] new pattern: " + (String)model.getValueAt(row, column));
+                mCallbacks.printOutput("[VULNERS] new pattern: " + model.getValueAt(row, column));
                 rule.setPattern(Pattern.compile((String)model.getValueAt(row, column)));
                 break;
             case 1:

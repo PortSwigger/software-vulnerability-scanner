@@ -5,12 +5,12 @@ import java.util.Set;
 
 public class Software {
 
-    private String key;
-    private String name;
-    private String version;
-    private String matchType;
-    private String alias;
-    private Set<Vulnerability> vulnerabilities;
+    private final String key;
+    private final String name;
+    private final String version;
+    private final String matchType;
+    private final String alias;
+    private final Set<Vulnerability> vulnerabilities;
 
     public Software(String key, String name, String version, String matchType, String alias) {
         this.key = key;

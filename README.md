@@ -20,7 +20,7 @@ If Vulners Plugin detects vulnerable software it will show you CVE, advisoroies 
 ## Requirements
 
 - Burp Suite - Professional Edition
-- Java 1.7
+- Java 1.8
 - Maven
 
 ## Installation

@@ -26,7 +26,7 @@ public class BurpExtender extends PassiveScan {
     private TabComponent tabComponent;
     private VulnersService vulnersService;
     private final Map<String, Domain> domains = new HashMap<>();
-    private Map<String, Map<String, String>> matchRules = new HashMap<>();
+    private final Map<String, Map<String, String>> matchRules = new HashMap<>();
 
     @Override
     protected void initPassiveScan() {

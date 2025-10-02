@@ -311,7 +311,7 @@ public class TabComponent {
         panel7.add(label12, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         cbxIsDebug = new JCheckBox();
         cbxIsDebug.setEnabled(true);
-        cbxIsDebug.setSelected(true);
+        cbxIsDebug.setSelected(false);
         cbxIsDebug.setText("");
         panel7.add(cbxIsDebug, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(51, 20), null, 0, false));
     }

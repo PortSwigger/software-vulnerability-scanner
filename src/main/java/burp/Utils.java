@@ -15,7 +15,7 @@ import java.util.*;
  */
 public class Utils {
 
-    private HttpClient httpClient;
+    private final HttpClient httpClient;
 
     public Utils(HttpClient client) {
         this.httpClient = client;

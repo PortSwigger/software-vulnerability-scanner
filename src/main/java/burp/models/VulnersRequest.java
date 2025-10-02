@@ -7,8 +7,8 @@ import java.util.Set;
 
 public class VulnersRequest {
 
-    private String domainName;
-    private String path;
+    private final String domainName;
+    private final String path;
     private Software software;
     private SoftwareIssue softwareIssue;
     private IHttpRequestResponse baseRequestResponse;

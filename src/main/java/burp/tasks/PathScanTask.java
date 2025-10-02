@@ -14,10 +14,10 @@ import java.util.function.Consumer;
 
 public class PathScanTask extends Thread {
 
-    private HttpClient httpClient;
-    private Consumer<VulnersRequest> callback;
-    private VulnersRequest vulnersRequest;
-    private Utils utils;
+    private final HttpClient httpClient;
+    private final Consumer<VulnersRequest> callback;
+    private final VulnersRequest vulnersRequest;
+    private final Utils utils;
 
     public PathScanTask(VulnersRequest vulnersRequest, HttpClient httpClient, Consumer<VulnersRequest> callback) {
         this.httpClient = httpClient;
